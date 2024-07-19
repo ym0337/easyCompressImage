@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "sharp": "^0.33.4"
+  },
+  "volta": {
+    "node": "18.17.1"
   }
 }

@@ -3,8 +3,10 @@ const fs = require('fs').promises;
 const path = require('path');
 
 // 输入和输出文件夹
-const INPUT_DIR = 'input_images'; // 必填
-const OUTPUT_DIR = 'output_images'; // 必填
+const INPUT_DIR = 'input_dir'; // 必填
+const OUTPUT_DIR = 'output_dir'; // 必填
+
+let imageCount = 0; // 统计图片数量
 
 // 压缩后的品质，越高压缩效果越差 1 - 100
 const PNG_QUALITY = 80; 
@@ -44,9 +46,11 @@ async function processDirectory(inputDir, outputDir) {
       // 压缩图像文件
       const ext = path.extname(item.name).toLowerCase();
       if (ext === '.png') {
+        imageCount++;
         await compressPNG(inputPath, outputPath);
         // console.log(`Compressed ${inputPath} as PNG to ${outputPath}`);
       } else if (ext === '.jpg' || ext === '.jpeg') {
+        imageCount++;
         await compressJPEG(inputPath, outputPath);
         // console.log(`Compressed ${inputPath} as JPEG to ${outputPath}`);
       } else {
@@ -97,7 +101,7 @@ const folderToDelete = path.join(__dirname, OUTPUT_DIR);
   try {
     await deleteFolder(folderToDelete);
     await processDirectory(INPUT_DIR, OUTPUT_DIR);
-    console.log('All images processed successfully');
+    console.log(`所以图片已经操作完,共 ${yellowText(imageCount)} 张`);
   } catch (error) {
     console.error('Error processing images:', error);
   }
