@@ -96,8 +96,8 @@ async function deleteFolder(folderPath) {
 // 删除 outputDir 文件夹
 const folderToDelete = path.join(__dirname, OUTPUT_DIR);
 
-// 开始处理
-(async () => {
+// 运行入口
+async function compress(){
   try {
     await deleteFolder(folderToDelete);
     await processDirectory(INPUT_DIR, OUTPUT_DIR);
@@ -105,8 +105,9 @@ const folderToDelete = path.join(__dirname, OUTPUT_DIR);
   } catch (error) {
     console.error('Error processing images:', error);
   }
-})();
+};
 
+compress();
 
 // ANSI 转义序列：绿色字体
 // const greenText = '\x1b[32mGreen Text\x1b[0m';
