@@ -10,7 +10,7 @@ let imageCount = 0; // 统计图片数量
 
 // 压缩后的品质，越高压缩效果越差 1 - 100
 const PNG_QUALITY = 80; 
-const JPEG_QUALITY = 80;
+const JPEG_QUALITY = 19;
 
 // 压缩 PNG 图像
 async function compressPNG(inputPath, outputPath) {
